@@ -88,8 +88,8 @@ class Flock:
             # number of boids in perception radius
             n = 0
             for j in range(self.n):
-                if i != j and (d := (self.pos[i] -
-                                     self.pos[j]).norm()) < self.pr[i]:
+                d = (self.pos[i] - self.pos[j]).norm()
+                if i != j and d < self.pr[i]:
                     alignment += self.vel[j]
                     separation += (self.pos[i] - self.pos[j]) / d
                     cohesion += self.pos[j]
@@ -158,7 +158,7 @@ class Flock:
 if __name__ == "__main__":
     ti.init(arch=ti.gpu)
 
-    WINDOW_HEIGHT = 540
+    WINDOW_HEIGHT = 1028
     AR = 1
     WINDOW_WIDTH = AR * WINDOW_HEIGHT
 
